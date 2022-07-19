@@ -58,25 +58,26 @@
 
     <androidx.constraintlayout.widget.Barrier
         android:id="@+id/postTopBarrier"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         app:barrierDirection="bottom"
         app:constraint_referenced_ids="postAvatar, postDate, postOptionButton" />
 
     <TextView
         android:id="@+id/postText"
         android:layout_width="0dp"
-        android:layout_height="match_parent"
-        app:layout_constraintTop_toBottomOf="@id/postTopBarrier"
-        tools:text="@tools:sample/lorem/random"
+        android:layout_height="wrap_content"
         android:ellipsize="end"
-        android:layout_marginBottom="48dp"
-        android:layout_marginTop="64dp"/>
+        android:paddingTop="@dimen/common_size"
+        android:paddingBottom="@dimen/common_size"
+        app:layout_constraintTop_toBottomOf="@id/postTopBarrier"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
 
     <androidx.constraintlayout.widget.Barrier
         android:id="@+id/postBottomBarrier"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         app:barrierDirection="bottom"
         app:constraint_referenced_ids="postText" />
 
@@ -85,25 +86,21 @@
         android:layout_width="@dimen/avatar_size"
         android:layout_height="@dimen/avatar_size"
         android:contentDescription="@string/like_button"
-        android:src="@drawable/ic_like_button_24dp"
+        app:srcCompat="@drawable/ic_like_button_24dp"
         android:background="@android:color/transparent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintTop_toBottomOf="@id/postBottomBarrier"
-        app:layout_constraintEnd_toStartOf="@id/postNumberLikes"
-        android:paddingStart="@dimen/common_size"/>
+        android:layout_marginTop="16dp" />
 
     <androidx.appcompat.widget.AppCompatTextView
         android:id="@+id/postNumberLikes"
-        android:layout_width="@dimen/avatar_size"
-        android:layout_height="@dimen/avatar_size"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:singleLine="true"
         app:layout_constraintTop_toBottomOf="@id/postBottomBarrier"
         app:layout_constraintStart_toEndOf="@id/postLikeButton"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@id/postShareButton"
-        android:padding="@dimen/common_size"
-        android:paddingStart="8dp"
+        android:layout_marginTop="@dimen/common_size"
+        android:paddingTop="@dimen/common_size"
         tools:text="10" />
 
     <androidx.appcompat.widget.AppCompatImageButton
@@ -111,51 +108,43 @@
         android:layout_width="@dimen/avatar_size"
         android:layout_height="@dimen/avatar_size"
         android:contentDescription="@string/share_button"
-        android:src="@drawable/ic_button_share_24"
+        app:srcCompat="@drawable/ic_button_share_24"
         android:background="@android:color/transparent"
         app:layout_constraintStart_toEndOf="@id/postNumberLikes"
-        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintTop_toBottomOf="@id/postBottomBarrier"
-        app:layout_constraintEnd_toStartOf="@id/postNumberShares"
-        android:paddingStart="@dimen/common_size" />
+        android:layout_marginTop="@dimen/common_size" />
 
     <androidx.appcompat.widget.AppCompatTextView
         android:id="@+id/postNumberShares"
-        android:layout_width="@dimen/avatar_size"
-        android:layout_height="@dimen/avatar_size"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:singleLine="true"
         app:layout_constraintTop_toBottomOf="@id/postBottomBarrier"
         app:layout_constraintStart_toEndOf="@id/postShareButton"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@id/postViewEyeImage"
-        android:padding="@dimen/common_size"
-        android:paddingStart="8dp"
-        tools:text="5" />
+        android:layout_marginTop="@dimen/common_size"
+        android:paddingTop="@dimen/common_size"
+        tools:text="500" />
 
     <androidx.appcompat.widget.AppCompatImageView
         android:id="@+id/postViewEyeImage"
-        android:layout_width="@dimen/avatar_size"
-        android:layout_height="@dimen/avatar_size"
-        android:src="@drawable/ic_eye_image_24"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:srcCompat="@drawable/ic_eye_image_24"
         app:layout_constraintTop_toBottomOf="@id/postBottomBarrier"
-        app:layout_constraintStart_toEndOf="@id/postNumberShares"
-        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@id/postNumberView"
-        android:layout_marginStart="64dp"
-        android:padding="@dimen/common_size"
-        android:paddingStart="@dimen/common_size" />
+        android:layout_marginEnd="8dp"
+        android:layout_marginTop="@dimen/common_size"
+        android:paddingTop="@dimen/common_size" />
 
     <androidx.appcompat.widget.AppCompatTextView
         android:id="@+id/postNumberView"
-        android:layout_width="@dimen/avatar_size"
-        android:layout_height="@dimen/avatar_size"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:singleLine="true"
-        app:layout_constraintStart_toEndOf="@id/postViewEyeImage"
         app:layout_constraintTop_toBottomOf="@id/postBottomBarrier"
-        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        android:padding="@dimen/common_size"
-        android:paddingStart="8dp"
-        tools:text="500"/>
+        android:layout_marginTop="@dimen/common_size"
+        android:paddingTop="@dimen/common_size"
+        tools:text="10K" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
