@@ -6,4 +6,10 @@
     <string name="option_button">Кнопка опцыі</string>
     <string name="like_button">Кнопка падабаецца</string>
     <string name="share_button">Кнопка падзяліцца</string>
+    <string name="remove">Выдаліць</string>
+    <string name="post_text">Текст поста</string>
+    <string name="description_post_like">Кнопка отправить</string>
+    <string name="edit">Изменить</string>
+    <string name="edit_post">Изменить пост</string>
+    <string name="cancel_edit">cancel edit</string>
 </resources>
