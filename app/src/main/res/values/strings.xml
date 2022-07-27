@@ -5,4 +5,10 @@
     <string name="option_button">option button</string>
     <string name="like_button">like button</string>
     <string name="share_button">share button</string>
+    <string name="remove">Remove</string>
+    <string name="post_text">Post Text</string>
+    <string name="description_post_like">button save, insert</string>
+    <string name="edit">Edit</string>
+    <string name="edit_post">Edit post</string>
+    <string name="cancel_edit">cancel edit</string>
 </resources>
