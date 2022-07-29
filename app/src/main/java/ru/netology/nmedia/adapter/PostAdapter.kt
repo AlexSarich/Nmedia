@@ -3,7 +3,6 @@ package ru.netology.nmedia.adapter
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import android.widget.PopupMenu
-import androidx.annotation.DrawableRes
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
@@ -63,17 +62,13 @@ internal class PostAdapter(
                 postUserName.text = post.author
                 postDate.text = post.published
                 postText.text = post.content
-                postLikeButton.setImageResource(getLikeIconResId(post.likedByMe))
-                postNumberLikes.text = getStringFromInt(post.likes)
-                postNumberShares.text = getStringFromInt(post.shares)
+                postLikeButton.isChecked = post.likedByMe
+                postLikeButton.text = getStringFromInt(post.likes)
+                postShareButton.text = getStringFromInt(post.shares)
                 postNumberView.text = getStringFromInt(post.views)
                 postOptionButton.setOnClickListener { popupMenu.show() }
             }
         }
-
-        @DrawableRes
-        private fun getLikeIconResId(liked: Boolean) =
-            if (liked) R.drawable.ic_liked_button_24 else R.drawable.ic_like_button_24dp
 
         private fun getStringFromInt(num: UInt): String {
             val numDouble = num.toDouble()

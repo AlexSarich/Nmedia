@@ -44,17 +44,19 @@
         app:layout_constraintTop_toBottomOf="@id/postUserName"
         tools:text="TextView" />
 
-    <androidx.appcompat.widget.AppCompatImageButton
+    <com.google.android.material.button.MaterialButton
         android:id="@+id/postOptionButton"
-        android:layout_width="@dimen/avatar_size"
-        android:layout_height="@dimen/avatar_size"
-        android:layout_marginBottom="@dimen/common_size"
-        android:contentDescription="@string/option_button"
+        style="@style/Widget.AppTheme.Option"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:background="@android:color/transparent"
-        android:src="@drawable/ic_options_button_24dp"
-        app:layout_constraintBottom_toBottomOf="@id/postTopBarrier"
+        android:checkable="true"
+        android:contentDescription="@string/option_button"
+        app:icon="@drawable/ic_options_button_24dp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="@id/postTopBarrier"
+        />
 
     <androidx.constraintlayout.widget.Barrier
         android:id="@+id/postTopBarrier"
@@ -81,49 +83,28 @@
         app:barrierDirection="bottom"
         app:constraint_referenced_ids="postText" />
 
-    <androidx.appcompat.widget.AppCompatImageButton
+    <com.google.android.material.button.MaterialButton
         android:id="@+id/postLikeButton"
-        android:layout_width="@dimen/avatar_size"
-        android:layout_height="@dimen/avatar_size"
+        style="@style/Widget.AppTheme.LikeCheckbox"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
         android:contentDescription="@string/like_button"
-        app:srcCompat="@drawable/ic_like_button_24dp"
-        android:background="@android:color/transparent"
+        android:checkable="true"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/postBottomBarrier"
-        android:layout_marginTop="16dp" />
+        tools:text="100"/>
 
-    <androidx.appcompat.widget.AppCompatTextView
-        android:id="@+id/postNumberLikes"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:singleLine="true"
-        app:layout_constraintTop_toBottomOf="@id/postBottomBarrier"
-        app:layout_constraintStart_toEndOf="@id/postLikeButton"
-        android:layout_marginTop="@dimen/common_size"
-        android:paddingTop="@dimen/common_size"
-        tools:text="10" />
-
-    <androidx.appcompat.widget.AppCompatImageButton
+    <com.google.android.material.button.MaterialButton
         android:id="@+id/postShareButton"
-        android:layout_width="@dimen/avatar_size"
-        android:layout_height="@dimen/avatar_size"
-        android:contentDescription="@string/share_button"
-        app:srcCompat="@drawable/ic_button_share_24"
-        android:background="@android:color/transparent"
-        app:layout_constraintStart_toEndOf="@id/postNumberLikes"
-        app:layout_constraintTop_toBottomOf="@id/postBottomBarrier"
-        android:layout_marginTop="@dimen/common_size" />
-
-    <androidx.appcompat.widget.AppCompatTextView
-        android:id="@+id/postNumberShares"
+        style="@style/Widget.AppTheme.ShareCheckbox"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:singleLine="true"
-        app:layout_constraintTop_toBottomOf="@id/postBottomBarrier"
-        app:layout_constraintStart_toEndOf="@id/postShareButton"
+        android:contentDescription="@string/share_button"
         android:layout_marginTop="@dimen/common_size"
-        android:paddingTop="@dimen/common_size"
-        tools:text="500" />
+        app:layout_constraintStart_toEndOf="@id/postLikeButton"
+        app:layout_constraintTop_toBottomOf="@id/postBottomBarrier"
+        tools:text="500"/>
 
     <androidx.appcompat.widget.AppCompatImageView
         android:id="@+id/postViewEyeImage"
