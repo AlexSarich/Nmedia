@@ -67,7 +67,7 @@
         android:layout_height="48dp"
         android:layout_margin="8dp"
         android:text="@string/edit_post"
-        android:textSize="24sp"
+        android:textSize="20sp"
         android:textColor="#21479E"
         android:shadowColor="#000000"
         android:shadowRadius="2"
