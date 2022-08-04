@@ -1,4 +1,6 @@
 package ru.netology.nmedia.dto
 
-class EditPostResult {
-}
+class EditPostResult (
+    val newContent: String?,
+    val newVideosUrl: String?
+    )

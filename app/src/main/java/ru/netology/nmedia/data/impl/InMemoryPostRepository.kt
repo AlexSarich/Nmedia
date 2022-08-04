@@ -14,7 +14,19 @@ class InMemoryPostRepository: PostRepository {
         }
 
     override val data = MutableLiveData(
-        List(GENERATED_POST_AMOUNT) { index ->
+            listOf(
+                Post(
+                    id = 1000u,
+                    author = "Me",
+                    content = "Hello world!",
+                    published = "20.12.2012",
+                    likes = 0u,
+                    shares = 0u,
+                    views = 0u,
+                    videosUrl = "https://www.youtube.com/watch?v=jA_N18TJyK0"
+                )
+            )
+                + List(GENERATED_POST_AMOUNT) { index ->
             Post(
                 id = (index + 1).toUInt(),
                 author = "Me",
@@ -53,8 +65,6 @@ class InMemoryPostRepository: PostRepository {
         if (post.id == PostRepository.NEW_POST_ID) insert(post) else update(post)
     }
 
-
-
     private fun update(post: Post) {
         data.value = posts.map {
             if (it.id == post.id) post else it
@@ -66,13 +76,7 @@ class InMemoryPostRepository: PostRepository {
     }
     //
 
-    override fun cancelEdit() {
-        data.value = posts
-    }
-
     private companion object {
         const val GENERATED_POST_AMOUNT = 100
     }
-
-
 }

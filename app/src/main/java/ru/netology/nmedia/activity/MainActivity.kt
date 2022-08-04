@@ -1,14 +1,13 @@
-package ru.netology.nmedia
+package ru.netology.nmedia.activity
 
 import android.content.Intent
+import android.net.Uri
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.view.View
 import androidx.activity.viewModels
+import ru.netology.nmedia.R
 import ru.netology.nmedia.adapter.PostAdapter
 import ru.netology.nmedia.databinding.ActivityMainBinding
-import ru.netology.nmedia.utils.hideKeyboard
-import ru.netology.nmedia.utils.showKeyboard
 import ru.netology.nmedia.viewModel.PostViewModel
 
 class MainActivity : AppCompatActivity() {
@@ -26,38 +25,11 @@ class MainActivity : AppCompatActivity() {
         viewModel.data.observe(this) { posts ->
             adapter.submitList(posts)
         }
-        binding.saveButton.setOnClickListener {
-            with(binding.contentEdit) {
-                val content = text.toString()
-                viewModel.onSaveButtonClicked(content)
-                clearFocus()
-                hideKeyboard()
-            }
+        binding.fab.setOnClickListener {
+            viewModel.onAddButtonClicked()
+
         }
-        viewModel.currentPost.observe(this) { currentPost ->
-            with (binding.contentEdit) {
-                val content = currentPost?.content
-                setText(content)
-                if (content != null) {
-                    setSelection(text.length)
-                    requestFocus()
-                    showKeyboard()
-                    binding.editGroup.visibility = View.VISIBLE
-                } else {
-                    clearFocus()
-                    hideKeyboard()
-                    binding.editGroup.visibility = View.GONE
-                }
-            }
-        }
-        binding.editCancel.setOnClickListener {
-            viewModel.onCancelEditClicked()
-            with(binding) {
-                editGroup.visibility = View.GONE
-                contentEdit.clearFocus()
-                contentEdit.hideKeyboard()
-            }
-        }
+
         viewModel.sharePostContent.observe(this) { postContent ->
             val intent = Intent().apply {
                 action = Intent.ACTION_SEND
@@ -68,6 +40,25 @@ class MainActivity : AppCompatActivity() {
                 intent, getString(R.string.share_chooser)
             )
             startActivity(shareIntent)
+        }
+        val postActivityResultLauncher =
+            registerForActivityResult(PostActivity.ResultContract) { editPostResult ->
+            editPostResult?.newContent ?: return@registerForActivityResult
+            viewModel.onSaveButtonClicked(editPostResult.newContent, editPostResult.newVideosUrl)
+        }
+        viewModel.navigateToPostContentScreen.observe(this) {
+            postActivityResultLauncher.launch(it)
+        }
+
+        viewModel.navigateToVideoWatching.observe(this) { videoUrl ->
+            val intent = Intent()
+                .apply {
+                    action = Intent.ACTION_VIEW
+                    data = Uri.parse(videoUrl)
+                }
+            val videoWatchingIntent =
+                Intent.createChooser(intent, getString(R.string.watch_video))
+            startActivity(videoWatchingIntent)
         }
     }
 }

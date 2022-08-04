@@ -9,7 +9,6 @@ interface PostRepository {
     fun share(postId: UInt)
     fun delete(postId: UInt)
     fun save(post: Post)
-    fun cancelEdit()
 
     companion object {
         const val NEW_POST_ID = 0u
