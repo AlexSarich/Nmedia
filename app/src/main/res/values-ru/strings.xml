@@ -11,5 +11,12 @@
     <string name="description_post_like">Кнопка отправить</string>
     <string name="edit">Изменить</string>
     <string name="edit_post">Изменить пост</string>
-    <string name="cancel_edit">cancel edit</string>
+    <string name="cancel_edit">Отменить редактирование</string>
+    <string name="share_chooser">Поделиться</string>
+    <string name="description_post_save">окей</string>
+    <string name="add_post">Add post</string>
+    <string name="video">Воспроизвести видео</string>
+    <string name="watch_video">Просмотр видео</string>
+    <string name="add_video_url">Add video URL</string>
+    <string name="text_post">Post text</string>
 </resources>

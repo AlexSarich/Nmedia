@@ -73,6 +73,7 @@
         android:paddingTop="@dimen/common_size"
         android:paddingBottom="@dimen/common_size"
         app:layout_constraintTop_toBottomOf="@id/postTopBarrier"
+        app:layout_constraintBottom_toTopOf="@id/postVideo"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
 
@@ -127,5 +128,36 @@
         android:layout_marginTop="@dimen/common_size"
         android:paddingTop="@dimen/common_size"
         tools:text="10K" />
+
+    <androidx.appcompat.widget.AppCompatImageView
+        android:id="@+id/postVideo"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:adjustViewBounds="true"
+        android:contentDescription="@string/video"
+        android:background="#000000"
+        android:src="@drawable/ic_video"
+        app:layout_constraintBottom_toTopOf="@id/postBottomBarrier"
+        app:layout_constraintTop_toBottomOf="@id/postText" />
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/postPlayButton"
+        style="@style/Widget.AppTheme.PlayButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@android:color/transparent"
+        app:icon="@drawable/ic_play_button_24"
+        app:layout_constraintBottom_toBottomOf="@id/postVideo"
+        app:layout_constraintEnd_toEndOf="@id/postVideo"
+        app:layout_constraintStart_toStartOf="@id/postVideo"
+        app:layout_constraintTop_toTopOf="@id/postVideo" />
+
+    <androidx.constraintlayout.widget.Group
+        android:id="@+id/video_group"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:visibility="gone"
+        app:constraint_referenced_ids="postVideo, postPlayButton"
+        tools:visibility="visible" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
