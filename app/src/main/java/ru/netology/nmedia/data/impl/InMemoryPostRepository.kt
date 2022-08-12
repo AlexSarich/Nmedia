@@ -6,7 +6,7 @@ import ru.netology.nmedia.dto.Post
 
 class InMemoryPostRepository: PostRepository {
 
-    private var nextId = GENERATED_POST_AMOUNT.toUInt()
+    private var nextId = GENERATED_POST_AMOUNT
 
     private val posts
         get() = checkNotNull(data.value) {
@@ -16,7 +16,7 @@ class InMemoryPostRepository: PostRepository {
     override val data = MutableLiveData(
             listOf(
                 Post(
-                    id = 1000u,
+                    id = 1000,
                     author = "Me",
                     content = "Hello world!",
                     published = "20.12.2012",
@@ -28,7 +28,7 @@ class InMemoryPostRepository: PostRepository {
             )
                 + List(GENERATED_POST_AMOUNT) { index ->
             Post(
-                id = (index + 1).toUInt(),
+                id = (index + 1),
                 author = "Me",
                 content = "$index Hello world!",
                 published = "20.12.2012",
@@ -39,7 +39,7 @@ class InMemoryPostRepository: PostRepository {
         }
     )
 
-    override fun like(postId: UInt) {
+    override fun like(postId: Int) {
         data.value = posts.map {
             if (it.id != postId) it
             else it.copy(
@@ -49,14 +49,14 @@ class InMemoryPostRepository: PostRepository {
         }
     }
 
-    override fun share(postId: UInt) {
+    override fun share(postId: Int) {
         data.value = posts.map {
             if (it.id != postId) it
             else it.copy(shares = it.shares + 1u)
         }
     }
 
-    override fun delete(postId: UInt) {
+    override fun delete(postId: Int) {
         data.value = posts.filter { it.id != postId }
     }
 
