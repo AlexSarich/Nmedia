@@ -6,6 +6,12 @@
     android:layout_height="wrap_content"
     android:padding="@dimen/common_size">
 
+    <androidx.constraintlayout.widget.Group
+        android:id="@+id/group_post"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:constraint_referenced_ids="postAvatar, postUserName, postDate, postText"/>
+
     <ImageView
         android:id="@+id/postAvatar"
         android:layout_width="@dimen/avatar_size"
@@ -153,7 +159,7 @@
         app:layout_constraintTop_toTopOf="@id/postVideo" />
 
     <androidx.constraintlayout.widget.Group
-        android:id="@+id/video_group"
+        android:id="@+id/postVideoGroup"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:visibility="gone"

@@ -35,6 +35,8 @@ internal fun View.focusAndShowKeyboard() {
         // No need to wait for the window to get focus.
         showTheKeyboardNow()
     } else {
+        clearFocus()
+        showTheKeyboardNow()
         // We need to wait until the window gets focus.
         viewTreeObserver.addOnWindowFocusChangeListener(
             object : ViewTreeObserver.OnWindowFocusChangeListener {
@@ -47,5 +49,6 @@ internal fun View.focusAndShowKeyboard() {
                     }
                 }
             })
+        requestFocus()
     }
 }
