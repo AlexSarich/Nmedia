@@ -4,6 +4,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.PopupMenu
+import androidx.constraintlayout.widget.Group
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
@@ -53,10 +54,17 @@ internal class PostAdapter(
         }
 
         init {
+            fun Group.setAllOnClickListener(listener: View.OnClickListener?) {
+                referencedIds.forEach { id ->
+                    rootView.findViewById<View>(id).setOnClickListener(listener)
+                }
+            }
             binding.postLikeButton.setOnClickListener { listener.onLikeClicked(post) }
             binding.postShareButton.setOnClickListener { listener.onShareClicked(post) }
             binding.postPlayButton.setOnClickListener { listener.onVideoClicked(post) }
-            binding.postVideo.setOnClickListener { listener.onVideoClicked(post) }
+            binding.postVideoGroup.setAllOnClickListener { listener.onVideoClicked(post) }
+            binding.postOptionButton.setOnClickListener { popupMenu.show() }
+            binding.groupPost.setAllOnClickListener { listener.onPostClicked(post) }
         }
 
         fun bind(post: Post) {
@@ -69,8 +77,7 @@ internal class PostAdapter(
                 postLikeButton.text = getStringFromInt(post.likes)
                 postShareButton.text = getStringFromInt(post.shares)
                 postNumberView.text = getStringFromInt(post.views)
-                postOptionButton.setOnClickListener { popupMenu.show() }
-                videoGroup.visibility =
+                postVideoGroup.visibility =
                     if (post.videosUrl.isNullOrBlank()) View.GONE else View.VISIBLE
             }
         }
