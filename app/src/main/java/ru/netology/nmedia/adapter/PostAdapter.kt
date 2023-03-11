@@ -75,20 +75,20 @@ internal class PostAdapter(
                 postText.text = post.content
                 postLikeButton.isChecked = post.likedByMe
                 postLikeButton.text = getStringFromInt(post.likes)
-                postShareButton.text = getStringFromInt(post.shares)
-                postNumberView.text = getStringFromInt(post.views)
+                //postShareButton.text = getStringFromInt(post.shares)
+                //postNumberView.text = getStringFromInt(post.views)
                 postVideoGroup.visibility =
                     if (post.videosUrl.isNullOrBlank()) View.GONE else View.VISIBLE
             }
         }
 
-        private fun getStringFromInt(num: UInt): String {
+        private fun getStringFromInt(num: Int): String {
             val numDouble = num.toDouble()
             return when (num) {
-                in 0u..999u -> num.toString()
-                in 1000u..9999u -> "${(numDouble / 1000).roundToInt()}K"
-                in 10_000u..999_999u -> "${(numDouble / 100).roundToInt() /10}K"
-                in 1_000_000u..Int.MAX_VALUE.toUInt() -> "${(numDouble / 1_000_000).roundToInt()}M"
+                in 0..999 -> num.toString()
+                in 1000..9999 -> "${(numDouble / 1000).roundToInt()}K"
+                in 10_000..999_999 -> "${(numDouble / 100).roundToInt() /10}K"
+                in 1_000_000..Int.MAX_VALUE -> "${(numDouble / 1_000_000).roundToInt()}M"
                 else -> throw NoNumberException("No number")
             }
         }
