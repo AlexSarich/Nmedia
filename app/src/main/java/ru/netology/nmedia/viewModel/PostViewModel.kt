@@ -5,7 +5,8 @@ import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.MutableLiveData
 import ru.netology.nmedia.adapter.PostInteractionListener
 import ru.netology.nmedia.data.PostRepository
-import ru.netology.nmedia.data.impl.FilePostRepository
+import ru.netology.nmedia.data.impl.PostRepositoryImpl
+import ru.netology.nmedia.db.AppDb
 import ru.netology.nmedia.dto.EditPostResult
 import ru.netology.nmedia.dto.Post
 
@@ -15,14 +16,16 @@ class PostViewModel(
     application: Application
 ) : AndroidViewModel(application), PostInteractionListener {
 
-    private val repository: PostRepository = FilePostRepository(application)
+    private val repository: PostRepository = PostRepositoryImpl(
+        dao = AppDb.getInstance(context = application).postDao
+    )
 
     val data by repository::data
 
     val sharePostContent = SingleLiveEvent<String>()
     val navigateToPostContentScreen = SingleLiveEvent<EditPostResult?>()
     val navigateToVideoWatching = SingleLiveEvent<String?>()
-    val navigateToPostCardFragmentEvent = SingleLiveEvent<Int>()
+    val navigateToPostCardFragmentEvent = SingleLiveEvent<Long>()
 
     val currentPost = MutableLiveData<Post?>(null)
 
@@ -36,9 +39,9 @@ class PostViewModel(
             author = "Me",
             content = content,
             published = "today",
-            likes = 0u,
-            shares = 0u,
-            views = 0u,
+            likes = 0,
+            //shares = 0u,
+            //views = 0u,
             videosUrl = videosUrl
         )
         repository.save(post)
@@ -48,7 +51,7 @@ class PostViewModel(
     override fun onLikeClicked(post: Post) = repository.like(post.id)
     override fun onShareClicked(post: Post) {
         sharePostContent.value = post.content
-        repository.share(post.id)
+        //repository.share(post.id)
     }
     override fun onDeleteClicked(post: Post) = repository.delete(post.id)
     override fun onEditClicked(post: Post) {

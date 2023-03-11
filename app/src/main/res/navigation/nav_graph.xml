@@ -35,7 +35,7 @@
         tools:layout="@layout/post_card_fragment">
         <argument
             android:name="postId"
-            app:argType="integer"
+            app:argType="long"
             app:nullable="false" />
         <action
             android:id="@+id/postCardFragmentToPostContentFragment"
